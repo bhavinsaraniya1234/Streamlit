@@ -16,13 +16,11 @@ def black_scholes_option_pricing(S, K, T, r, sigma, option_type):
     return option_price
 
 def norm_cdf(x):
-    """Calculate the cumulative distribution function of the standard normal distribution."""
     return (1.0 + math.erf(x / math.sqrt(2.0))) / 2.0
 
 def main():
     st.title("Black-Scholes Option Pricing Calculator")
 
-    # User inputs
     S = st.number_input("Current stock price:", min_value=0.0, value=100.0)
     K = st.number_input("Option strike price:", min_value=0.0, value=100.0)
     T = st.number_input("Time to expiration (in years):", min_value=0.0, value=1.0)
@@ -31,10 +29,8 @@ def main():
     option_type = st.radio("Option type:", ["Call", "Put"])
 
     if st.button("Calculate Option Price"):
-        # Perform calculation
         option_price = black_scholes_option_pricing(S, K, T, r / 100, sigma / 100, option_type)
 
-        # Display results
         st.subheader("Results:")
         if option_price is not None:
             st.success(f"Theoretical {option_type} option price: ${option_price:.2f}")
